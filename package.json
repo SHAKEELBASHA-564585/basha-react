@@ -6,15 +6,18 @@
   "name": "basha-react",
   "version": "1.0.0",
   "description": "one more react app",
-  
   "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "parcel": "^2.9.3",
     "process": "^0.11.10"
   },
-  "browsersList":[
-    "last 2 Chrome versions"
+  "browsersList": [
+    "last 10 Chrome versions"
   ],
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
