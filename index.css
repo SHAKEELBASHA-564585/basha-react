@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px;
+}
+
+.logo {
+    padding-left: 20px;
+    width: 110px;
+}
+
+.nav-items>ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-items>ul>li {
+    padding: 20px;
+}
+
+.card {
+    width: 200px;
+    border: 1px solid black;
+    padding: 0.5rem;
+    margin: 10px;
+}
+
+.card>img {
+    width: 100%;
+}
+
+.card-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
