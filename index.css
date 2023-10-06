@@ -35,3 +35,34 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.search-cont {
+    margin: 0.5rem;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.search-cont>input {
+    outline: none;
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+}
+
+
+.search-cont>button {
+    margin-left: 0.3rem;
+    width: 70px;
+    height: 20px;
+    background-color: rgb(53, 124, 218);
+    border: 0px;
+    cursor: pointer;
+    outline: none;
+    font-family: "caveat";
+    font-weight: bold;
+    font-size: 12px;
+    ;
+}
