@@ -2,28 +2,30 @@ import { useState } from "react";
 import { restaurants } from "../../constants";
 import Card from "./Card"
 
-const filterData = (searchInput, hotels) => { // filtering the hotels
-    const finalData = hotels.filter((each => each.name.includes(searchInput)))
-    return finalData
+const filterData = (hotels, searchInput) => {
+    const filterData = hotels.filter((each) => each.name.includes(searchInput))
+    return filterData
+
 }
 
 const Body = () => {
+    const [searchInput, setSearchInput] = useState();
+    const [hotels, setHotels] = useState(restaurants);
 
-    const [searchInput, setSearchInput] = useState();   //var,callback function
-    const [hotels, setHotels] = useState(restaurants);  //var,callback function
 
     return (
         <>
             <div className="search-cont">
-                <input type="text" className="search-bar" placeholder="Search" value={searchInput} onChange={(e) => {
-                    setSearchInput(e.target.value)
-                }} />
-
+                <input type="text"
+                    className="search-bar"
+                    placeholder="Search"
+                    value={searchInput}
+                    onChange={(e) => { setSearchInput(e.target.value) }}
+                />
                 <button className="btn" onClick={() => {
-                    const data = filterData(searchInput, hotels) //filtered data according to user input
-                    setHotels(data) //returned data
-                }}>Search</button>
-
+                    const data = filterData(hotels, searchInput);
+                    setHotels(data)
+                }} >Search</button>
             </div>
 
             <div className="card-list">
