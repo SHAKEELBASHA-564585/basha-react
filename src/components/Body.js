@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { restaurants } from "../../constants";
 import Shimmer from "./Shimmer";
@@ -25,7 +26,7 @@ const Body = () => {
 
   async function getRestaurants() {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     setFilteredRestaurants(
@@ -34,6 +35,9 @@ const Body = () => {
     setAllRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     ); //optional Chaining
+    console.log(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   }
 
   //Conditional Rendering
@@ -70,8 +74,15 @@ const Body = () => {
         <h1>No Restaurants Matched Your Search</h1>
       ) : (
         <div className="card-list">
-          {filteredRestaurants.map((each) => {
-            return <Card {...each.info} key={each.info.id} />;
+          {filteredRestaurants.map((restaurant) => {
+            return (
+              <Link
+                to={"/restaurant/" + restaurant.info.id}
+                key={restaurant.info.id}
+              >
+                <Card {...restaurant.info} />
+              </Link>
+            );
           })}
         </div>
       )}

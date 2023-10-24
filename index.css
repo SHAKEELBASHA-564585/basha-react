@@ -80,3 +80,20 @@
   background-color: lightgray;
   margin: 20px;
 }
+.flex-items{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:20px;
+}
+.image{
+  width:200px;
+}
+.heading{
+  font-size:40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.paraa{
+  font-style: italic;
+  color:darkblue;
+}

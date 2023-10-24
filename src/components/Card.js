@@ -1,6 +1,7 @@
 import { IMG_CDN_URL } from "../../constants";
 const Card = (props) => {
   const { name, cuisines, avgRating, cloudinaryImageId } = props;
+
   return (
     <div className="card">
       <img className="img" alt="img" src={IMG_CDN_URL + cloudinaryImageId} />

@@ -13,16 +13,20 @@ import Header from "./src/components/Header";
 import Body from "./src/components/Body";
 import Footer from "./src/components/Footer";
 import About from "./src/components/About";
+import Contact from "./src/components/Contact";
+import Cart from "./src/components/Cart";
+import RestaurantDetail from "./src/components/RestaurantDetail";
 import NotFound from "./src/components/NotFound";
 
-import { createBrowserRouter, RouterProvider, link } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 //Submittion for all Components
 const AppLayout = () => {
   return (
     <>
       <Header />
-      <Body />
+      <Outlet />
+      {/* power of Outlet is, it will takes the children into it and display in ui without rendering total ui */}
       <Footer />
     </>
   );
@@ -33,10 +37,28 @@ const appRouter = createBrowserRouter([
     path: "/",
     element: <AppLayout />,
     errorElement: <NotFound />,
-  },
-  {
-    path: "/About",
-    element: <About />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantDetail />,
+      },
+    ],
   },
 ]);
 

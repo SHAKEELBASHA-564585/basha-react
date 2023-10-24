@@ -1,7 +1,7 @@
 import { useRouteError } from "react-router-dom"; //Catching error ex:(404 error to showcase in UI)
 const NotFound = () => {
   const err = useRouteError();
-  console.log(err);
+  console.log(err); //we get to know status and statusText when we do a console of useRouter()
   const { status, statusText } = err;
   return (
     <div>
