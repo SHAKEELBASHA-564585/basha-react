@@ -16,13 +16,23 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
-  //if empty dependecy array can be seen in useEffect(CF),then it can be seen once after render
+  //if empty dependecy array can be seen in useEffect(CF),then it can be seen once after initial render
   //dep arr[searchInput]=>once after initial render+every time after re-render when my searchInput changes
 
   useEffect(() => {
     //API call
     getRestaurants();
+    // const timerId = setInterval(() => {
+    //   console.log("Basha");
+    // }, 1000);
+    console.log("useEffect");
+    // return () => {
+    //   clearInterval(timerId);
+    //   console.log("useEffect return");
+    // };
   }, []);
+
+  console.log("render");
 
   async function getRestaurants() {
     const data = await fetch(
@@ -35,9 +45,9 @@ const Body = () => {
     setAllRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     ); //optional Chaining
-    console.log(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    // console.log(
+    //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
   }
 
   //Conditional Rendering

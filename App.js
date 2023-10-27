@@ -15,6 +15,7 @@ import Footer from "./src/components/Footer";
 import About from "./src/components/About";
 import Contact from "./src/components/Contact";
 import Cart from "./src/components/Cart";
+import Profile from "./src/components/Profile";
 import RestaurantDetail from "./src/components/RestaurantDetail";
 import NotFound from "./src/components/NotFound";
 
@@ -39,12 +40,18 @@ const appRouter = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: "/",
-        element: <Body />,
-      },
-      {
         path: "/about",
         element: <About />,
+        children: [
+          {
+            path: "profile", //parentPath/{path}=>localhost:1234/about/profile
+            element: <Profile />,
+          },
+        ],
+      },
+      {
+        path: "/",
+        element: <Body />,
       },
       {
         path: "/contact",
