@@ -3,13 +3,8 @@ import { useState, useEffect } from "react";
 import { restaurants } from "../../constants";
 import Shimmer from "./Shimmer";
 import Card from "./Card";
-
-const filterData = (allRestaurants, searchInput) => {
-  const filterData = allRestaurants.filter((each) =>
-    each?.info?.name?.toLowerCase()?.includes(searchInput?.toLowerCase())
-  );
-  return filterData;
-};
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -45,14 +40,16 @@ const Body = () => {
     setAllRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     ); //optional Chaining
-    // console.log(
-    //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    // );
   }
 
   //Conditional Rendering
   //if restaurants is empty then we should display shimmer UI
   //if restaurants has data then actual data should be loaded on UI
+
+  const isOnline = useOnline();
+  if (!isOnline) {
+    return <h1>🔴 Offline, Please check your internet connection!!</h1>;
+  }
 
   if (!allRestaurants) return null; //not rendered component(Early return)
 

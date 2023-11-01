@@ -2,34 +2,17 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Shimmer } from "./Shimmer";
 import { IMG_CDN_URL } from "../../constants";
+import useDishes from "../utils/useDishes";
 
 const TYPE =
   "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory";
 
 const RestaurantDetail = () => {
-  const [dishes, setDishes] = useState([]);
-
-  const params = useParams(); //we can get params form route
+  const params = useParams(); //we can get params form route And this is also a hook...
   const { id } = params; //get this id from console.log(params)
   // console.log(id);
 
-  useEffect(() => {
-    getRestaurantsInfo();
-  }, []);
-
-  async function getRestaurantsInfo() {
-    const data = await fetch(
-      `https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
-    );
-    const json = await data?.json();
-    //console.log(json);
-    const types =
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-
-    //console.log(types);
-
-    setDishes(types);
-  }
+  const dishes = useDishes(id); //coming from utils(useDishes) And this is a new created hook created by us...
   return !dishes ? (
     <Shimmer />
   ) : (

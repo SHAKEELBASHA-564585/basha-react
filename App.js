@@ -7,17 +7,23 @@
  * Foooter-links,copyright
  */
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
 import Footer from "./src/components/Footer";
-import About from "./src/components/About";
+//import About from "./src/components/About";
+const About = lazy(() => import("./src/components/About")); //chunking,Lazy loading,dynamic import,code splitting,Dynamic Bundling,On demand loading
 import Contact from "./src/components/Contact";
 import Cart from "./src/components/Cart";
 import Profile from "./src/components/Profile";
 import RestaurantDetail from "./src/components/RestaurantDetail";
+import Shimmer from "./src/components/Shimmer";
 import NotFound from "./src/components/NotFound";
+//import Instaamart from "./src/components/Instaamart"; normal import
+
+const Instaamart = lazy(() => import("./src/components/Instaamart")); //chunking,Lazy loading,dynamic import,code splitting,Dynamic Bundling,On demand loading
+//upon ondemand loading=>upon render=>react suspend loading
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -41,7 +47,11 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <About />
+          </Suspense>
+        ),
         children: [
           {
             path: "profile", //parentPath/{path}=>localhost:1234/about/profile
@@ -64,6 +74,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantDetail />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instaamart />
+          </Suspense>
+        ),
       },
     ],
   },
