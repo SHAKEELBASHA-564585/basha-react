@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { restaurants } from "../../constants";
 import Shimmer from "./Shimmer";
 import Card from "./Card";
+import { RESTAURANTS_LINK } from "../../constants";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
 
@@ -30,9 +31,7 @@ const Body = () => {
   console.log("render");
 
   async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(RESTAURANTS_LINK);
     const json = await data.json();
     setFilteredRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants

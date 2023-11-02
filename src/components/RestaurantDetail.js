@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Shimmer } from "./Shimmer";
 import { IMG_CDN_URL } from "../../constants";
@@ -8,7 +7,7 @@ const TYPE =
   "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory";
 
 const RestaurantDetail = () => {
-  const params = useParams(); //we can get params form route And this is also a hook...
+  const params = useParams(); //we can get params from route And this is also a hook...
   const { id } = params; //get this id from console.log(params)
   // console.log(id);
 
@@ -39,7 +38,6 @@ const RestaurantDetail = () => {
             </div>
           );
         }
-
         return null;
       })}
     </div>
